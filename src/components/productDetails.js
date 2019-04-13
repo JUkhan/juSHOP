@@ -3,7 +3,7 @@ import { Api } from '../services/Api';
 import { take } from 'rxjs/operators';
 import { Button } from 'antd'
 import { AddToCart } from '../store/actions';
-import { getStore } from 'ajwah-store'
+import { dispatch } from 'ajwah-store'
 
 export function ProductDetails(props) {
     const [attributes, setAttributesState] = useState([])
@@ -16,7 +16,7 @@ export function ProductDetails(props) {
     const { name, description, price, discounted_price, thumbnail } = props.product;
 
     function addToCart() {
-        getStore().dispatch({ type: AddToCart, payload: props.product })
+        dispatch(AddToCart, props.product)
         props.hide();
     }
     function setColor(color) {

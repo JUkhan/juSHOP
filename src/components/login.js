@@ -1,7 +1,7 @@
 import React from 'react'
 import * as ActionNames from '../store/actions'
 import { Form, Icon, Input, Button } from 'antd'
-import { getStore } from 'ajwah-store'
+import { dispatch } from 'ajwah-store'
 
 
 function login(props) {
@@ -10,7 +10,7 @@ function login(props) {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                getStore().dispatch({ type: ActionNames.Login, payload: values })
+                dispatch(ActionNames.Login, values)
             }
         });
 

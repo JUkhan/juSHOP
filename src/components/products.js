@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import * as ActionNames from '../store/actions'
-import { getStore } from 'ajwah-store'
+import { dispatch, subscribe } from 'ajwah-store'
 import { List, Pagination } from 'antd'
 import { ProductItem } from './productItem'
-import { subscribe } from '../utils'
+
 
 
 export function Products() {
@@ -11,7 +11,7 @@ export function Products() {
     const [product, setProductState] = useState({ data: {}, pageNo: 0, limit: 0 })
 
     useEffect(() => {
-        getStore().dispatch({ type: ActionNames.LoadProducts, payload: {} })
+        dispatch(ActionNames.LoadProducts, {})
         return subscribe({ product: setProductState })
     }, [])
 
@@ -37,5 +37,5 @@ export function Products() {
 }
 
 function onPageChange(pageNo, limit) {
-    getStore().dispatch({ type: ActionNames.PageChange, payload: { pageNo, limit } })
+    dispatch(ActionNames.PageChange, { pageNo, limit })
 }

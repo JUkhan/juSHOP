@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { subscribe } from '../../utils';
+import { subscribe } from 'ajwah-store';
 import { Row, Col, Table } from 'antd'
 
 export function OrderSummary(props) {

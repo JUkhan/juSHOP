@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as ActionNames from '../store/actions';
-import { getStore } from 'ajwah-store';
+import { subscribe, dispatch } from 'ajwah-store';
 import { List, Button, Row, Col } from 'antd';
 import { CartItem } from './cartItem';
-import { subscribe } from '../utils';
 import { withRouter } from 'react-router-dom'
 
 export function ShoppingCart(props) {
@@ -49,6 +48,6 @@ export function ShoppingCart(props) {
 }
 
 function checkout(history, cartId) {
-    getStore().dispatch({ type: ActionNames.GetCartItems, payload: cartId })
+    dispatch(ActionNames.GetCartItems, cartId)
     history.push('/checkout')
 }

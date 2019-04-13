@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Layout } from 'antd'
 import { Products, ShoppingCart, Checkout, Home, Nav } from '../components'
 import { BrowserRouter as Router, Route } from "react-router-dom"
-import { subscribe } from '../utils';
+import { subscribe } from 'ajwah-store';
 
 const { Header, Content, Footer } = Layout
 

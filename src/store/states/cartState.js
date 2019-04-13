@@ -35,7 +35,7 @@ export class CartState {
     }
 
     actionCartCleanup(state) {
-        return updateObject(state, { data: [], total: 0, cartId: undefined })
+        return updateObject(state, { data: [], total: 0, cartId: undefined, grandTotal: undefined, orderId: undefined })
     }
 
     actionOrderId(state, { payload, charge }) {

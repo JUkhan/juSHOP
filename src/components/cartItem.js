@@ -1,6 +1,6 @@
 import React from 'react';
 import * as ActionNames from '../store/actions';
-import { getStore } from 'ajwah-store';
+import { dispatch } from 'ajwah-store';
 import { Row, Col, List, Button } from 'antd';
 
 
@@ -14,7 +14,7 @@ export function CartItem(props) {
                 <List.Item.Meta
                     avatar={<img width={220} alt={item.name} src={'https://backendapi.turing.com/images/products/' + item.thumbnail} />}
                     title={item.name}
-                    description={<Button onClick={() => getStore().dispatch({ type: ActionNames.RemoveItem, payload: item })} type="danger" icon="close">Remove</Button>}
+                    description={<Button onClick={() => dispatch(ActionNames.RemoveItem, item)} type="danger" icon="close">Remove</Button>}
                 />
             </Col>
             <Col span={8}>
@@ -34,5 +34,5 @@ export function CartItem(props) {
 }
 
 function changeQuantity(item, quantity) {
-    getStore().dispatch({ type: ActionNames.ChangeQuantity, payload: { item, quantity } })
+    dispatch(ActionNames.ChangeQuantity, { item, quantity })
 }

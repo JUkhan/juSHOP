@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import * as ActionNames from '../store/actions'
-import { getStore } from 'ajwah-store'
+import { subscribe } from 'ajwah-store'
 import { Input, Badge, Icon, Button } from 'antd'
-import { subscribe } from '../utils'
 import { Link } from "react-router-dom"
 import { withRouter } from 'react-router-dom'
+import { getStore, dispatch } from 'ajwah-store'
 const { Search } = Input;
 
 function searchProduct(props) {
@@ -25,7 +25,7 @@ function searchProduct(props) {
                 <span><Icon type="user" /> <b style={{ paddingRight: 5 }}>{customer.user.name} </b></span>
                 <Search
                     placeholder="product search..."
-                    onInput={e => getStore().dispatch({ type: ActionNames.SearchProducts, payload: e.target.value })}
+                    onInput={e => dispatch(ActionNames.SearchProducts, e.target.value)}
                     style={{ width: 200 }}
                 />
                 <Link to="/cart" style={{ marginLeft: 10 }}>

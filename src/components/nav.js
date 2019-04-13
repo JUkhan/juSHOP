@@ -3,7 +3,7 @@ import { Login } from './login'
 import { Register } from './register'
 import { SearchProduct } from './searchProduct'
 import { Menu, Tabs, Modal, Button } from 'antd'
-import { subscribe } from '../utils'
+import { subscribe } from 'ajwah-store'
 import { withRouter } from 'react-router-dom'
 
 function nav(props) {

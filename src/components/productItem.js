@@ -21,8 +21,8 @@ export function ProductItem(props) {
                     <h3>{product.name}</h3>
                 </div>
                 <div style={{ paddingTop: 15, paddingBottom: 15 }}>
-                    <span style={{ textDecoration: 'line-through', float: 'left' }}>{product.discounted_price === '0.00' ? null : product.price}</span>
-                    <Button onClick={show} type="danger" style={{ float: 'right' }}>{product.discounted_price === '0.00' ? product.price : product.discounted_price}</Button>
+                    <span style={{ textDecoration: 'line-through', float: 'left' }}>{product.discounted_price === '0.00' ? null : '$' + product.price}</span>
+                    <Button onClick={show} type="danger" style={{ float: 'right' }}>{product.discounted_price === '0.00' ? '$' + product.price : '$' + product.discounted_price}</Button>
                 </div>
                 <div style={{ clear: 'both' }}></div>
 

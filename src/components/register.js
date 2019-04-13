@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as ActionNames from '../store/actions';
 import { Form, Input, Button } from 'antd';
-import { getStore } from 'ajwah-store';
+import { dispatch } from 'ajwah-store';
 
 function register(props) {
     var [state, setState] = useState({ confirmDirty: false });
@@ -10,7 +10,7 @@ function register(props) {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
-                getStore().dispatch({ type: ActionNames.Register, payload: values })
+                dispatch(ActionNames.Register, values)
             }
         });
 

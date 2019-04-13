@@ -3,7 +3,7 @@ import { Delivery } from './delivery'
 import { OrderSummary } from './orderSummery'
 import { Success } from './success'
 import { Row, Col, Button, Steps } from 'antd'
-import { getStore } from 'ajwah-store'
+import { dispatch } from 'ajwah-store'
 import * as ActionNames from '../../store/actions'
 
 export function Checkout() {
@@ -15,9 +15,9 @@ export function Checkout() {
             deliveryConfig.form.validateFields((err, values) => {
                 if (!err) {
                     deliveryConfig.data = values;
-                    getStore().dispatch({ type: ActionNames.DeliveryData, payload: values })
+                    dispatch(ActionNames.DeliveryData, values)
                     if (values.isBiAsDelivery)
-                        getStore().dispatch({ type: ActionNames.UpdateCustomer })
+                        dispatch(ActionNames.UpdateCustomer)
                     nextStep();
                 }
             });
@@ -40,7 +40,7 @@ export function Checkout() {
         setCurrent(current);
     }
     function payAndMakeOrders() {
-        getStore().dispatch({ type: ActionNames.MakeOrders })
+        dispatch(ActionNames.MakeOrders)
     }
     const content = getContent(current, deliveryConfig)
     return (
