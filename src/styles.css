@@ -1,0 +1,46 @@
+/*.App {
+  font-family: sans-serif;
+  text-align: center;
+}*/
+
+ .logo {
+  width: 150px;
+  font-size: 26px;
+  background: transparent;
+  color:pink;
+  float: left;
+}
+.search{
+  width: 450px;
+  
+  float: right;
+}
+.cart-item-btns{
+  text-align: center;
+  padding-top: 20%;
+}
+.cart-price{
+  text-align: center;
+  padding-top: 20%;
+  font-size: 26px;
+}
+
+ .login-form {
+  max-width: 300px;
+}
+ .login-form-forgot {
+  float: right;
+}
+ .login-form-button {
+  width: 100%;
+}
+.checkout-content{
+  margin-top: 16px;
+  min-height: 200px;
+  padding: 10px;
+}
+.color-size ul > li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
