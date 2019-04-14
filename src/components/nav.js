@@ -3,14 +3,14 @@ import { Login } from './login'
 import { Register } from './register'
 import { SearchProduct } from './searchProduct'
 import { Menu, Tabs, Modal, Button } from 'antd'
-import { subscribe } from 'ajwah-store'
+import { subscriptions } from 'ajwah-store'
 import { withRouter } from 'react-router-dom'
 
 function nav(props) {
     const [visible, setVisibleState] = useState(false);
     const [customer, setCustomerState] = useState({})
 
-    useEffect(() => subscribe({ customer: setCustomerState }), [])
+    useEffect(() => subscriptions({ customer: setCustomerState }), [])
 
     if (visible && customer.user) {
         hide()

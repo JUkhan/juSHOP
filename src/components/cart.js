@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as ActionNames from '../store/actions';
-import { subscribe, dispatch } from 'ajwah-store';
+import { subscriptions, dispatch } from 'ajwah-store';
 import { List, Button, Row, Col } from 'antd';
 import { CartItem } from './cartItem';
 import { withRouter } from 'react-router-dom'
@@ -9,7 +9,7 @@ export function ShoppingCart(props) {
 
     const [cart, setCartState] = useState({ data: [] });
 
-    useEffect(() => subscribe({ cart: setCartState }), []);
+    useEffect(() => subscriptions({ cart: setCartState }), []);
 
     const header = <Row>
         <Col style={{ textAlign: 'center' }} span={8}>Item</Col>

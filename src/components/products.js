@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as ActionNames from '../store/actions'
-import { dispatch, subscribe } from 'ajwah-store'
+import { dispatch, subscriptions } from 'ajwah-store'
 import { List, Pagination } from 'antd'
 import { ProductItem } from './productItem'
 
@@ -12,7 +12,7 @@ export function Products() {
 
     useEffect(() => {
         dispatch(ActionNames.LoadProducts, {})
-        return subscribe({ product: setProductState })
+        return subscriptions({ product: setProductState })
     }, [])
 
     return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import * as ActionNames from '../store/actions'
-import { subscribe } from 'ajwah-store'
+import { subscriptions } from 'ajwah-store'
 import { Input, Badge, Icon, Button } from 'antd'
 import { Link } from "react-router-dom"
 import { withRouter } from 'react-router-dom'
@@ -12,7 +12,7 @@ function searchProduct(props) {
     const [cart, setCartState] = useState({})
     const [customer, setCustomerState] = useState({})
 
-    useEffect(() => subscribe({ cart: setCartState, customer: setCustomerState }), [])
+    useEffect(() => subscriptions({ cart: setCartState, customer: setCustomerState }), [])
 
     function logOut() {
         getStore().importState({})
