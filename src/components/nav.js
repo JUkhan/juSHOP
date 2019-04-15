@@ -16,6 +16,9 @@ function nav(props) {
         hide()
         props.history.push('/shop')
     }
+    else if (customer.user && props.location.pathname === '/') {
+        props.history.push('/shop')
+    }
 
     function show() {
         setVisibleState(true)

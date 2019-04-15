@@ -8,7 +8,7 @@ function delivery(props) {
 
     useEffect(() => {
         const sub = getStore().select('delivery').subscribe(data => props.form.setFieldsValue(data))
-        return sub.unsubscribe()
+        return () => sub.unsubscribe()
     }, [])
     props.config.form = props.form
     const { getFieldDecorator } = props.form
