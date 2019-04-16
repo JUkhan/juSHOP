@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 
 import { Row, Col, Form, Input, Checkbox, Radio } from 'antd'
-import { getStore } from 'ajwah-store'
+import { storeCtx } from 'ajwah-store'
 
 
 function delivery(props) {
 
     useEffect(() => {
-        const sub = getStore().select('delivery').subscribe(data => props.form.setFieldsValue(data))
+        const sub = storeCtx().select('delivery').subscribe(data => props.form.setFieldsValue(data))
         return () => sub.unsubscribe()
     }, [])
     props.config.form = props.form

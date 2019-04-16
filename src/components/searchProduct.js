@@ -4,7 +4,7 @@ import { subscriptions } from 'ajwah-store'
 import { Input, Badge, Icon, Button } from 'antd'
 import { Link } from "react-router-dom"
 import { withRouter } from 'react-router-dom'
-import { getStore, dispatch } from 'ajwah-store'
+import { storeCtx, dispatch } from 'ajwah-store'
 const { Search } = Input;
 
 function searchProduct(props) {
@@ -15,7 +15,7 @@ function searchProduct(props) {
     useEffect(() => subscriptions({ cart: setCartState, customer: setCustomerState }), [])
 
     function logOut() {
-        getStore().importState({})
+        storeCtx().importState({})
         props.history.push('/')
     }
 

@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "dependencies": {
     "ajwah-devtools": "^0.1.1",
-    "ajwah-store": "^0.2.4",
+    "ajwah-store": "^0.2.6",
     "antd": "3.16.2",
     "react": "16.8.3",
     "react-dom": "16.8.3",
