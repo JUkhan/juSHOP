@@ -35,11 +35,14 @@ export class CartState {
     }
 
     actionCartCleanup(state) {
-        return updateObject(state, { data: [], total: 0, cartId: undefined, grandTotal: undefined, orderId: undefined })
+        return updateObject(state, { data: [], total: 0, cartId: undefined, grandTotal: undefined, orderId: undefined, stripeToken: undefined })
     }
 
     actionOrderId(state, { payload, charge }) {
         return updateObject(state, { orderId: payload, charge })
+    }
+    actionMakeOrders(state, { payload }) {
+        return updateObject(state, { stripeToken: payload })
     }
 
 }

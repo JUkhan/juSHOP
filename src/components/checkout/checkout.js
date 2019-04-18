@@ -2,19 +2,26 @@ import React, { useState } from 'react'
 import { Delivery } from './delivery'
 import { OrderSummary } from './orderSummery'
 import { Success } from './success'
-import { Row, Col, Button, Steps } from 'antd'
+import { Row, Col, Button, Steps, message } from 'antd'
 import { dispatch } from 'ajwah-store'
 import * as ActionNames from '../../store/actions'
+import { Payment } from './payment';
+import { Elements } from 'react-stripe-elements'
 
 export function Checkout() {
     let [current, setCurrent] = useState(0)
-    const deliveryConfig = { form: null };
-
+    const config = { form: null };
+    config.pamentTokenCallback = (payload) => {
+        console.log(payload)
+        message.loading('Your order is processing.');
+        dispatch(ActionNames.MakeOrders, payload.token.id)
+        setCurrent(3);
+    }
     function next() {
         if (current === 0) {
-            deliveryConfig.form.validateFields((err, values) => {
+            config.form.validateFields((err, values) => {
                 if (!err) {
-                    deliveryConfig.data = values;
+                    config.data = values;
                     dispatch(ActionNames.DeliveryData, values)
                     if (values.isBiAsDelivery)
                         dispatch(ActionNames.UpdateCustomer)
@@ -28,9 +35,12 @@ export function Checkout() {
         current++
         if (current > 4)
             current = 4
-        setCurrent(current);
+
+        current < 3 && setCurrent(current);
         if (current === 3) {
-            payAndMakeOrders()
+            current = 2;
+            //payAndMakeOrders()
+            config.submit();
         }
     }
     function prev() {
@@ -42,7 +52,7 @@ export function Checkout() {
     function payAndMakeOrders() {
         dispatch(ActionNames.MakeOrders)
     }
-    const content = getContent(current, deliveryConfig)
+    const content = getContent(current, config)
     return (
         <React.Fragment>
             <Steps current={current}>
@@ -60,11 +70,11 @@ export function Checkout() {
     )
 }
 
-function getContent(index, deliveryConfig) {
+function getContent(index, config) {
     switch (index) {
-        case 0: return <Delivery config={deliveryConfig} />
+        case 0: return <Delivery config={config} />
         case 1: return <OrderSummary />
-        case 2: return <div>Payment ui is not implemented, <br /> Used stripeToken:<b>'tok_1EOOKq2eZvKYlo2CnY7WPNiw'</b> </div>
+        case 2: return <div className="stripe"><Elements><Payment fontSize="14px" config={config} /></Elements></div>
         case 3: return <Success />
         default: return <div>Not Match any step</div>
 

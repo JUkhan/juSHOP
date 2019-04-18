@@ -7,6 +7,7 @@ import { MainLayout } from './layouts/mainLayout';
 import { ProductState, CartState, CustomerState, ProductEffect, DeliveryState, CartEffect } from './store';
 import { devTools } from 'ajwah-devtools';
 import { persistState } from './utils';
+import { StripeProvider } from 'react-stripe-elements'
 
 
 
@@ -19,9 +20,11 @@ setStoreContext({
 function App() {
   persistState();
   return (
-    <div className="App">
-      <MainLayout />
-    </div>
+    <StripeProvider apiKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh">
+      <div className="App">
+        <MainLayout />
+      </div>
+    </StripeProvider>
   );
 }
 

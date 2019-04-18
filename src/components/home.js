@@ -4,7 +4,7 @@ export function Home() {
         <React.Fragment>
             <h1>Welcome to juSHOP</h1>
             <p>Please have a free registration</p>
-            <p> and enjoy your shoping :)</p>
+            <p> and enjoy your shopping :)</p>
         </React.Fragment>
     )
 }
