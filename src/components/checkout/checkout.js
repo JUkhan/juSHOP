@@ -39,7 +39,6 @@ export function Checkout() {
         current < 3 && setCurrent(current);
         if (current === 3) {
             current = 2;
-            //payAndMakeOrders()
             config.submit();
         }
     }
@@ -49,9 +48,7 @@ export function Checkout() {
             current = 0
         setCurrent(current);
     }
-    function payAndMakeOrders() {
-        dispatch(ActionNames.MakeOrders)
-    }
+
     const content = getContent(current, config)
     return (
         <React.Fragment>

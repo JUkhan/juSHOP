@@ -4,8 +4,10 @@ import { take } from 'rxjs/operators';
 import { Button } from 'antd'
 import { AddToCart } from '../store/actions';
 import { dispatch } from 'ajwah-store'
+import { updateObject } from '../utils'
 
 export function ProductDetails(props) {
+    const [sa, setSAState] = useState({})
     const [attributes, setAttributesState] = useState([])
     useEffect(() => {
         Api.getAttributes(props.product.product_id).pipe(take(1)).subscribe(res => setAttributesState(res))
@@ -20,9 +22,11 @@ export function ProductDetails(props) {
         props.hide();
     }
     function setColor(color) {
+        setSAState(updateObject(sa, { color }))
         props.product.color = color
     }
     function setSize(size) {
+        setSAState(updateObject(sa, { size }))
         props.product.size = size
     }
     return (
@@ -40,13 +44,13 @@ export function ProductDetails(props) {
             <p>{description}</p>
 
             <div className="color-size">
-                <h3>Color</h3>
+                <h3>Color {sa.color && <Button disabled={true} shape="circle" style={{ backgroundColor: sa.color }} />}</h3>
                 <ul >
                     {colors.map(item => <li key={item.attribute_value_id} ><Button onClick={() => setColor(item.attribute_value)} shape="circle" style={{ backgroundColor: item.attribute_value }} /></li>)}
                 </ul>
             </div>
             <div className="color-size">
-                <h3>Size</h3>
+                <h3>Size {sa.size && <Button disabled={true} shape="round">{sa.size}</Button>}</h3>
                 <ul>
                     {sizes.map(item => <li key={item.attribute_value_id} ><Button onClick={() => setSize(item.attribute_value)} shape="round">{item.attribute_value}</Button></li>)}
                 </ul>
