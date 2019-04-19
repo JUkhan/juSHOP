@@ -17,8 +17,9 @@ setStoreContext({
   devTools: devTools()
 });
 
+persistState();
+
 function App() {
-  persistState();
   return (
     <StripeProvider apiKey="pk_test_6pRNASCoBOKtIshFeQd4XMUh">
       <div className="App">
