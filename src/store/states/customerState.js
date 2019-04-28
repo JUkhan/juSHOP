@@ -16,7 +16,11 @@ export class CustomerState {
     effectForRegister(action$) {
         return action$.pipe(
             mergeMap(action => Api.register(action.payload).pipe(
-                map(data => ({ type: ActionNames.CustomerData, payload: data }))
+                map(data => ({ type: ActionNames.CustomerData, payload: data })),
+                catchError(data => {
+                    console.log(data.response)
+                    return of({ type: ActionNames.CustomerData, payload: { error: data.response } })
+                })
             ))
         );
     }

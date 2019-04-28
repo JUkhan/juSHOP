@@ -21,7 +21,7 @@ export function MainLayout() {
                 <Content style={{ padding: '0 50px', marginTop: 100 }}>
                     <div style={{ background: '#fff', padding: 24, minHeight: 480 }}>
                         <Route path="/" exact component={Home} />
-                        {customer.user && <React.Fragment>
+                        {customer.customer && <React.Fragment>
                             <Route path="/shop" exact component={Products} />
                             <Route path="/cart" exact component={ShoppingCart} />
                             <Route path="/checkout" exact component={Checkout} />

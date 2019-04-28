@@ -56,7 +56,7 @@ export class CartEffect {
 
     effectForMakeOrders(action$, store$) {
         return action$.pipe(
-            withLatestFrom(store$.select(state => [state.cart.stripeToken, state.cart.cartId, state.cart.grandTotal, state.customer.accessToken, state.customer.user])),
+            withLatestFrom(store$.select(state => [state.cart.stripeToken, state.cart.cartId, state.cart.grandTotal, state.customer.accessToken, state.customer.customer])),
             mergeMap(([action, [stripeToken, cart_id, gtotal, token, { customer_id }]]) => {
                 let _order_id = 0;
                 return Api.makeOrders({ stripeToken, cart_id, customer_id, shipping_id: 2, tax_id: 2 }, token).pipe(

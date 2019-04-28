@@ -21,8 +21,8 @@ function searchProduct(props) {
 
     return (
         <div className="search">
-            {customer.user && <div>
-                <span><Icon type="user" /> <b style={{ paddingRight: 5 }}>{customer.user.name} </b></span>
+            {customer.customer && <div>
+                <span><Icon type="user" /> <b style={{ paddingRight: 5 }}>{customer.customer.name} </b></span>
                 <Search
                     placeholder="product search..."
                     onInput={e => dispatch(ActionNames.SearchProducts, e.target.value)}

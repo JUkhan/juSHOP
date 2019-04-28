@@ -4,20 +4,20 @@ import { Register } from './register'
 import { SearchProduct } from './searchProduct'
 import { Menu, Tabs, Modal, Button } from 'antd'
 import { subscriptions } from 'ajwah-store'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 
-function nav(props) {
+export function nav(props) {
     const [visible, setVisibleState] = useState(false);
     const [customer, setCustomerState] = useState({})
 
     useEffect(() => subscriptions({ customer: setCustomerState }), [])
 
-    if (visible && customer.user) {
+    if (visible && customer.customer) {
         hide()
-        props.history.push('/shop')
+        return <Redirect to="/shop" />
     }
-    else if (customer.user && props.location.pathname === '/') {
-        props.history.push('/shop')
+    else if (customer.customer && props.location.pathname === '/') {
+        return <Redirect to="/shop" />
     }
 
     function show() {
@@ -34,7 +34,7 @@ function nav(props) {
                 theme="dark"
                 mode="horizontal"
                 style={{ lineHeight: '64px' }}>
-                {!customer.user && <Menu.Item key="2" onClick={show}>Login or Sign up </Menu.Item>}
+                {!customer.customer && <Menu.Item key="2" onClick={show}>Login or Sign up </Menu.Item>}
                 <SearchProduct />
             </Menu>
             <Modal title="Login or Sign up"
