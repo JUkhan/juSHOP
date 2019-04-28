@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import * as ActionNames from '../store/actions'
-import { subscriptions } from 'ajwah-store'
+import { useSubscriptions, cleanupSubscriptions } from '../utils'
 import { Input, Badge, Icon, Button } from 'antd'
 import { Link } from "react-router-dom"
 import { withRouter } from 'react-router-dom'
-import { storeCtx, dispatch } from 'ajwah-store'
+import { dispatch, storeCtx } from 'ajwah-store'
+
+
 const { Search } = Input;
 
 function searchProduct(props) {
-
-    const [cart, setCartState] = useState({})
-    const [customer, setCustomerState] = useState({})
-
-    useEffect(() => subscriptions({ cart: setCartState, customer: setCustomerState }), [])
-
+    const [{ cart, customer }, config] = useSubscriptions(['cart', 'customer'])
+    useEffect(() => cleanupSubscriptions(config), [])
     function logOut() {
         storeCtx().importState({})
         props.history.push('/')
