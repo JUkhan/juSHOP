@@ -26,9 +26,9 @@ export function useSubscriptions(states) {
     }, states.reduce((prev, next) => { prev[next] = storeCtx().store.states[next] ? storeCtx().store.states[next].initialState : {}; return prev; }, {}));
     return [state, [dispatch, states]]
 }
-export function cleanupSubscriptions([dispatch, arr]) {
+export function cleanupSubscriptions([dispatch, states]) {
     var subs = new Subscription();
-    arr.forEach(stateName => {
+    states.forEach(stateName => {
         subs.add(storeCtx().select(stateName).subscribe(data => {
             dispatch({ type: stateName, payload: data })
         }));
