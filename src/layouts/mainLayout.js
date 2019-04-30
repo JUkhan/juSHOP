@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Layout } from 'antd'
 import { Products, ShoppingCart, Checkout, Home, Nav } from '../components'
 import { BrowserRouter as Router, Route } from "react-router-dom"
-import { subscriptions } from 'ajwah-store';
-
+import { useSubscriptions } from '../utils';
 const { Header, Content, Footer } = Layout
 
 export function MainLayout() {
-
-    const [customer, setCustomerState] = useState({})
-    useEffect(() => subscriptions({ customer: setCustomerState }), [])
-
+    const { customer } = useSubscriptions(['customer']);
     return (
         <Router>
             <Layout>

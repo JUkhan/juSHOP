@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import * as ActionNames from '../store/actions'
-import { dispatch, subscriptions } from 'ajwah-store'
+import { dispatch } from 'ajwah-store'
 import { List, Pagination } from 'antd'
 import { ProductItem } from './productItem'
+import { useSubscriptions } from '../utils';
 
 
 
 export function Products() {
 
-    const [product, setProductState] = useState({ data: {}, pageNo: 0, limit: 0 })
+    const { product } = useSubscriptions(['product'])
 
     useEffect(() => {
         dispatch(ActionNames.LoadProducts, {})
-        return subscriptions({ product: setProductState })
     }, [])
 
     return (

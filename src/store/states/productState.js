@@ -13,7 +13,7 @@ export class ProductState {
     }
 
     actionSearchProducts(state) {
-        return updateObject(state, { message: 'searching products...' })
+        return updateObject(state, { message: 'searching products...', pageNo: 1 })
     }
 
     actionPageChange(state, { payload: { pageNo, limit } }) {

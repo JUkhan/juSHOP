@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Login } from './login'
 import { Register } from './register'
 import { SearchProduct } from './searchProduct'
 import { Menu, Tabs, Modal, Button } from 'antd'
-import { subscriptions } from 'ajwah-store'
 import { withRouter, Redirect } from 'react-router-dom'
+import { useSubscriptions } from '../utils';
 
 export function nav(props) {
-    const [visible, setVisibleState] = useState(false);
-    const [customer, setCustomerState] = useState({})
 
-    useEffect(() => subscriptions({ customer: setCustomerState }), [])
-
+    const [visible, setVisibleState] = useState(false)
+    const { customer } = useSubscriptions(['customer'])
+    console.log(customer)
     if (visible && customer.customer) {
         hide()
         return <Redirect to="/shop" />
@@ -35,7 +34,7 @@ export function nav(props) {
                 mode="horizontal"
                 style={{ lineHeight: '64px' }}>
                 {!customer.customer && <Menu.Item key="2" onClick={show}>Login or Sign up </Menu.Item>}
-                <SearchProduct />
+                {customer.customer && <SearchProduct />}
             </Menu>
             <Modal title="Login or Sign up"
                 footer={<Button onClick={hide}>Close</Button>}

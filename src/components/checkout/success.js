@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Button } from 'antd';
-import { dispatch, subscriptions } from 'ajwah-store';
+import { dispatch } from 'ajwah-store';
 import * as ActionNames from '../../store/actions'
+import { useSubscriptions } from '../../utils';
 
 
 function success({ history }) {
-    const [cart, setCartState] = useState({ charge: {} })
-    useEffect(() => subscriptions({ cart: setCartState }), [])
-
+    const { cart } = useSubscriptions(['cart'])
     function back() {
         dispatch(ActionNames.CartCleanup)
         history.push('/shop')

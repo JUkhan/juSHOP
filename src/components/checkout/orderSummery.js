@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { subscriptions } from 'ajwah-store';
+import React from 'react'
 import { Row, Col, Table } from 'antd'
+import { useSubscriptions } from '../../utils';
 
 export function OrderSummary(props) {
 
-    let [cart, setCartState] = useState({ data: [] })
-    const [delivery, setDeliveryState] = useState({})
-    useEffect(() => subscriptions({ cart: setCartState, delivery: setDeliveryState }), [])
+    const { delivery, cart } = useSubscriptions(['delivery', 'cart'])
 
     const columns = [{
         title: 'Item',

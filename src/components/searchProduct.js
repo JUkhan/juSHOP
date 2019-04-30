@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import * as ActionNames from '../store/actions'
-import { useSubscriptions, cleanupSubscriptions } from '../utils'
+import { useSubscriptions } from '../utils'
 import { Input, Badge, Icon, Button } from 'antd'
 import { Link } from "react-router-dom"
 import { withRouter } from 'react-router-dom'
@@ -10,8 +10,9 @@ import { dispatch, storeCtx } from 'ajwah-store'
 const { Search } = Input;
 
 function searchProduct(props) {
-    const [{ cart, customer }, config] = useSubscriptions(['cart', 'customer'])
-    useEffect(() => cleanupSubscriptions(config), [])
+
+    const { cart, customer } = useSubscriptions(['cart', 'customer'])
+
     function logOut() {
         storeCtx().importState({})
         props.history.push('/')
