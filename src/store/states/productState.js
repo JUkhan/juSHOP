@@ -19,4 +19,10 @@ export class ProductState {
     actionPageChange(state, { payload: { pageNo, limit } }) {
         return updateObject(state, { pageNo, limit, message: 'page changeing...' });
     }
+    actionSelectCategory(state) {
+        return updateObject(state, { message: 'loading products...', pageNo: 1, })
+    }
+    actionSelectDepartment(state) {
+        return updateObject(state, { message: 'loading products...', pageNo: 1, })
+    }
 }

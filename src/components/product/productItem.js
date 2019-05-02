@@ -15,7 +15,7 @@ export function ProductItem(props) {
     }
     return (
         <React.Fragment>
-            <Card>
+            <Card hoverable>
                 <div style={{ textAlign: 'center' }}>
                     <img alt="example" src={'https://backendapi.turing.com/images/products/' + product.thumbnail} />
                     <h3>{product.name}</h3>
@@ -26,10 +26,10 @@ export function ProductItem(props) {
                 </div>
                 <div style={{ clear: 'both' }}></div>
 
-                <p style={{ minHeight: 40 }}>{product.description.substring(0, 50) + '...'}</p>
+                <p style={{ minHeight: 40 }}>{product.description.substring(0, 40) + '......'}</p>
 
             </Card >
-            <Modal visible={visible} onCancel={hide} footer={null}>
+            <Modal width={800} visible={visible} onCancel={hide} footer={null}>
                 <ProductDetails hide={hide} product={product} />
             </Modal>
         </React.Fragment>

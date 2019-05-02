@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import * as ActionNames from '../store/actions'
+import * as ActionNames from '../../store/actions'
 import { dispatch } from 'ajwah-store'
 import { List, Pagination } from 'antd'
 import { ProductItem } from './productItem'
-import { useSubscriptions } from '../utils';
+import { useSubscriptions } from '../../utils';
 
 
 
@@ -17,7 +17,7 @@ export function Products() {
 
     return (
         <React.Fragment>
-            <Pagination style={{ marginBottom: 15 }} showSizeChanger onChange={onPageChange} onShowSizeChange={onPageChange} current={product.pageNo} pageSize={product.limit} total={product.data.count} />
+            <Pagination style={{ marginBottom: 15, textAlign: 'center' }} showSizeChanger onChange={onPageChange} onShowSizeChange={onPageChange} current={product.pageNo} pageSize={product.limit} total={product.data.count} />
             <List
                 itemLayout="horizontal"
                 loading={product.message ? true : false}
@@ -31,7 +31,7 @@ export function Products() {
                     </List.Item>
                 )}
             />
-            <Pagination showSizeChanger onChange={onPageChange} onShowSizeChange={onPageChange} current={product.pageNo} pageSize={product.limit} total={product.data.count} />
+            <Pagination style={{ textAlign: 'center' }} showSizeChanger onChange={onPageChange} onShowSizeChange={onPageChange} current={product.pageNo} pageSize={product.limit} total={product.data.count} />
         </React.Fragment>
     );
 }

@@ -1,37 +1,50 @@
-import React from 'react';
-import * as ActionNames from '../store/actions';
-import { dispatch } from 'ajwah-store';
-import { List, Button, Row, Col } from 'antd';
+import React, { useState } from 'react';
+import { List, Button, Row, Col, message } from 'antd';
 import { CartItem } from './cartItem';
 import { withRouter } from 'react-router-dom'
 import { useSubscriptions } from '../utils'
+import { LoginRegisterModal } from './loginRegisterModal'
 
-export function ShoppingCart(props) {
+export function shoppingCart({ history }) {
 
-    const { cart } = useSubscriptions(['cart'])
+    const { cart, customer } = useSubscriptions(['cart', 'customer'])
+    const [modalConfig] = useState({ visible: false })
 
-    const header = <Row>
-        <Col style={{ textAlign: 'center' }} span={8}>Item</Col>
-        <Col style={{ textAlign: 'center' }} span={8}>Quantity</Col>
-        <Col style={{ textAlign: 'center' }} span={8}>Price</Col>
-    </Row>
+    if (modalConfig.visible && customer.accessToken) {
 
-    const Footer = withRouter(({ history }) => (
-        <Row>
-            <Col style={{ textAlign: 'center' }} span={8}>
-                <Button size="large" type="primary" shape="round" onClick={() => history.push('/shop')}>Back to shop</Button>
-            </Col>
-            <Col offset={8} style={{ textAlign: 'center' }} span={8}>
-                <Button size="large" disabled={cart.data.length === 0} type="danger" shape="round" onClick={() => checkout(history, cart.cartId)}>Checkout</Button>
-            </Col>
-        </Row>))
+        modalConfig.hide()
+        setTimeout(() => {
+            checkout(history, cart.cartId)
+        });
+    }
+
+    function show() {
+        message.info('Please login first to continue the checkout process.')
+        modalConfig.show()
+    }
+
+    const header = (<Row>
+        <Col style={{ textAlign: 'center' }} span={6}>Item</Col>
+        <Col style={{ textAlign: 'center' }} span={6}>Attributes</Col>
+        <Col style={{ textAlign: 'center' }} span={6}>Quantity</Col>
+        <Col style={{ textAlign: 'center' }} span={6}>Price</Col>
+    </Row>);
+
+    const footer = (<Row>
+        <Col style={{ textAlign: 'center' }} span={8}>
+            <Button size="large" type="primary" shape="round" onClick={() => history.push('/')}>Back to shop</Button>
+        </Col>
+        <Col offset={8} style={{ textAlign: 'center' }} span={8}>
+            <Button size="large" disabled={cart.data.length === 0} type="danger" shape="round" onClick={() => { customer.customer ? checkout(history, cart.cartId) : show() }}>Checkout</Button>
+        </Col>
+    </Row>);
 
     return (
         <React.Fragment>
             <h3>{cart.data.length} Items in Your Cart</h3>
             <List
                 header={header}
-                footer={<Footer />}
+                footer={footer}
                 itemLayout="vertical"
                 size="large"
                 dataSource={cart.data}
@@ -41,12 +54,14 @@ export function ShoppingCart(props) {
                     </List.Item>
                 )}
             />
-
+            <LoginRegisterModal config={modalConfig} />
         </React.Fragment>
     );
 }
 
 function checkout(history, cartId) {
-    dispatch(ActionNames.GetCartItems, cartId)
+    //dispatch(ActionNames.GetCartItems, cartId)
     history.push('/checkout')
 }
+
+export const ShoppingCart = withRouter(shoppingCart)

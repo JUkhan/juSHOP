@@ -2,13 +2,44 @@
   font-family: sans-serif;
   text-align: center;
 }*/
-
- .logo {
-  width: 150px;
-  font-size: 26px;
-  background: transparent;
+.review{
+  width: 400px;
+  display: inline-block;
+}
+.review textarea{
+  padding: 4px;
+  width: 400px;
+}
+.review .rate{
+  text-align: left;
+  margin-bottom: 5px;
+}
+ .main-content {
+  padding: 0 10px;
+  margin-top: 45px;
+  background: #fff
+}
+.main-content .child{
+  background: #fff;
+  padding: 15px;
+  padding-top: 25px;
+  min-height: 480px; 
+}
+.categories{
+  text-align: center;
+  color: #fff;
+  border-bottom: #6b7c93 dotted thin;
+  padding-bottom: 5px;
+  font-size: 16px;
+  margin: 20px 20px;
+}
+.logo{
   color:pink;
-  float: left;
+  text-align: center;
+  font-size: 22px;
+  height: 32px;
+  background: transparent;
+  margin: 16px;
 }
 .search{
   width: 450px;
@@ -17,11 +48,15 @@
 }
 .cart-item-btns{
   text-align: center;
-  padding-top: 20%;
+  padding-top: 12%;
+}
+.cart-item-attributes{
+  text-align: center;
+  padding-top: 13%;
 }
 .cart-price{
   text-align: center;
-  padding-top: 20%;
+  padding-top: 12%;
   font-size: 26px;
 }
 

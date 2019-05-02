@@ -10,6 +10,32 @@ export class Api {
             map(res => res.response)
         )
     }
+    static getProductsByCategory(category_id, pageNo = 1, limit = 20, descriptionLength = 40) {
+        return ajax.get(Api.baseUrl + `products/inCategory/${category_id}?page=${pageNo}&limit=${limit}&description_length=${descriptionLength}`).pipe(
+            map(res => res.response)
+        )
+    }
+    static getProductsByDepartment(department_id, pageNo = 1, limit = 20, descriptionLength = 40) {
+        return ajax.get(Api.baseUrl + `products/inDepartment/${department_id}?page=${pageNo}&limit=${limit}&description_length=${descriptionLength}`).pipe(
+            map(res => res.response)
+        )
+    }
+    static getProductDetails(product_id) {
+        return ajax.get(Api.baseUrl + `products/${product_id}/details`).pipe(
+            map(res => res.response)
+        )
+    }
+    static getProductReviews(product_id) {
+        return ajax.get(Api.baseUrl + `products/${product_id}/reviews`).pipe(
+            map(res => res.response)
+        )
+    }
+    static AddProductReview(product_id, review, rating, token) {
+        return ajax.post(Api.baseUrl + `products/${product_id}/reviews`, { review, rating }, { 'user-key': token }).pipe(
+            map(res => res.response)
+        )
+    }
+
     static getAttributes(productid) {
         return ajax.get(Api.baseUrl + `attributes/inProduct/${productid}`).pipe(
             map(res => res.response)
@@ -76,10 +102,23 @@ export class Api {
         )
     }
     static updateCustomerAddress(data, token) {
-        return ajax.post(Api.baseUrl + `customers/address`, data, { 'user-key': token }).pipe(
+        return ajax.put(Api.baseUrl + `customers/address`, data, { 'user-key': token }).pipe(
             map(res => res.response)
         )
     }
-
-
+    static getDepartments() {
+        return ajax.get(Api.baseUrl + `departments`).pipe(
+            map(res => res.response)
+        )
+    }
+    static getCategories() {
+        return ajax.get(Api.baseUrl + `categories`).pipe(
+            map(res => res.response)
+        )
+    }
+    static getCategoriesByDepartment(departmentId) {
+        return ajax.get(Api.baseUrl + `categories/inDepartment/${departmentId}`).pipe(
+            map(res => res.response)
+        )
+    }
 }

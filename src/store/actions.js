@@ -21,4 +21,11 @@ export const OrderId = 'OrderId';
 export const LoginError = 'LoginError';
 export const UpdateCustomer = 'UpdateCustomer';
 
+export const GetCategories = 'GetCategories'
+export const GetCategoriesByDepartment = 'GetCategoriesByDepartment'
+export const SelectDepartment = 'SelectDepartment'
+export const SelectCategory = 'SelectCategory'
+export const GetDepartments = 'GetDepartments'
+
+
 

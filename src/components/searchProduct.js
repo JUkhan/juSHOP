@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as ActionNames from '../store/actions'
 import { useSubscriptions } from '../utils'
 import { Input, Badge, Icon, Button } from 'antd'
@@ -6,22 +6,33 @@ import { Link } from "react-router-dom"
 import { withRouter } from 'react-router-dom'
 import { dispatch, storeCtx } from 'ajwah-store'
 
+import { LoginRegisterModal } from './loginRegisterModal'
 
 const { Search } = Input;
 
 function searchProduct(props) {
 
     const { cart, customer } = useSubscriptions(['cart', 'customer'])
+    const [modalConfig] = useState({ visible: false })
+
+    if (modalConfig.visible && customer.accessToken) {
+        modalConfig.hide();
+    }
+
+
+    function show() {
+        modalConfig.show()
+    }
 
     function logOut() {
         storeCtx().importState({})
         props.history.push('/')
+        dispatch(ActionNames.GetCategories).dispatch(ActionNames.GetDepartments).dispatch(ActionNames.LoadProducts, {})
     }
 
     return (
-        <div className="search">
-            {customer.customer && <div>
-                <span><Icon type="user" /> <b style={{ paddingRight: 5 }}>{customer.customer.name} </b></span>
+        <React.Fragment>
+            <div>
                 <Search
                     placeholder="product search..."
                     onInput={e => dispatch(ActionNames.SearchProducts, e.target.value)}
@@ -32,9 +43,18 @@ function searchProduct(props) {
                         <Icon style={{ fontSize: 28 }} theme="outlined" type="shopping-cart" />
                     </Badge>
                 </Link>
-                <Button onClick={logOut} style={{ float: "right", marginTop: 15 }}>Log out</Button>
-            </div>}
-        </div>
+                {customer.accessToken && <span>
+                    <span style={{ color: '#fff', paddingLeft: 20 }}><Icon type="user" /> <b style={{ paddingRight: 5 }}>{customer.customer.name} </b></span>
+                    <Button type="danger" shape="round" onClick={logOut} style={{ marginTop: 15 }}>Log out</Button>
+                </span>}
+                {!customer.accessToken && <span style={{ paddingLeft: 20 }}>
+                    <Button type="default" shape="round" onClick={show} style={{ marginTop: 15 }}>Log in or Sing up</Button>
+                </span>}
+
+            </div>
+            <LoginRegisterModal config={modalConfig} />
+
+        </React.Fragment>
     );
 }
 export const SearchProduct = withRouter(searchProduct)

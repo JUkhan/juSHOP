@@ -9,15 +9,19 @@ export function CartItem(props) {
 
     return (
         <Row>
-            <Col span={8}>
+            <Col span={6}>
 
                 <List.Item.Meta
-                    avatar={<img width={220} alt={item.name} src={'https://backendapi.turing.com/images/products/' + item.thumbnail} />}
+                    avatar={<img width={120} alt={item.name} src={'https://backendapi.turing.com/images/products/' + item.thumbnail} />}
                     title={item.name}
                     description={<Button onClick={() => dispatch(ActionNames.RemoveItem, item)} type="danger" icon="close">Remove</Button>}
                 />
+
             </Col>
-            <Col span={8}>
+            <Col span={6}>
+                <div className="cart-item-attributes">{twistAttributes(item.attributes)}</div>
+            </Col>
+            <Col span={6}>
                 <div className="cart-item-btns">
                     <Button onClick={() => changeQuantity(item, -1)} size="large" shape="circle" icon="minus" />
                     <Button size="large" disabled shape="round">{item.quantity}</Button>
@@ -25,7 +29,7 @@ export function CartItem(props) {
 
                 </div>
             </Col>
-            <Col span={8}>
+            <Col span={6}>
                 <div className="cart-price">${Number(item.quantity * Number(item.price)).toFixed(2)}</div>
             </Col>
         </Row>
@@ -35,4 +39,9 @@ export function CartItem(props) {
 
 function changeQuantity(item, quantity) {
     dispatch(ActionNames.ChangeQuantity, { item, quantity })
+}
+
+function twistAttributes(attributes) {
+    var arr = attributes.split(' ')
+    return `Color: ${arr[0]}, Size: ${arr[1]}`
 }

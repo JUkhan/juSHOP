@@ -15,6 +15,8 @@ export function persistState() {
         }
         else {
             state.product = undefined;
+            state.category = undefined;
+            state.department = undefined;
             localStorage.setItem('state', JSON.stringify(state));
         }
     });

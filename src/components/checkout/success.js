@@ -10,7 +10,7 @@ function success({ history }) {
     const { cart } = useSubscriptions(['cart'])
     function back() {
         dispatch(ActionNames.CartCleanup)
-        history.push('/shop')
+        history.push('/')
     }
     return (
         <div style={{ textAlign: 'center' }}>
@@ -19,7 +19,7 @@ function success({ history }) {
             <p>You will get email details.</p>
             <h1>OrderId:{cart.orderId} </h1>
             <p>{JSON.stringify(cart.charge)}</p>
-            <Button onClick={back}>Back to Shop</Button>
+            <Button type="danger" shape="round" onClick={back}>Back to Shop</Button>
         </div>
     )
 }

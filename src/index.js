@@ -4,7 +4,7 @@ import "antd/dist/antd.css";
 import "./styles.css";
 import { setStoreContext } from "ajwah-store";
 import { MainLayout } from './layouts/mainLayout';
-import { ProductState, CartState, CustomerState, ProductEffect, DeliveryState, CartEffect } from './store';
+import { ProductState, CartState, CustomerState, ProductEffect, DeliveryState, CartEffect, CategoryState, DepartmentState } from './store';
 import { devTools } from 'ajwah-devtools';
 import { persistState } from './utils';
 import { StripeProvider } from 'react-stripe-elements'
@@ -12,7 +12,7 @@ import { StripeProvider } from 'react-stripe-elements'
 
 
 setStoreContext({
-  states: [ProductState, CartState, CustomerState, DeliveryState],
+  states: [CategoryState, DepartmentState, ProductState, CartState, CustomerState, DeliveryState],
   effects: [ProductEffect, CartEffect],
   devTools: devTools()
 });
