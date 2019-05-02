@@ -10,12 +10,12 @@ export class Api {
             map(res => res.response)
         )
     }
-    static getProductsByCategory(category_id, pageNo = 1, limit = 20, descriptionLength = 40) {
+    static getProductsByCategory(category_id, pageNo = 1, limit = 20, descriptionLength = 120) {
         return ajax.get(Api.baseUrl + `products/inCategory/${category_id}?page=${pageNo}&limit=${limit}&description_length=${descriptionLength}`).pipe(
             map(res => res.response)
         )
     }
-    static getProductsByDepartment(department_id, pageNo = 1, limit = 20, descriptionLength = 40) {
+    static getProductsByDepartment(department_id, pageNo = 1, limit = 20, descriptionLength = 120) {
         return ajax.get(Api.baseUrl + `products/inDepartment/${department_id}?page=${pageNo}&limit=${limit}&description_length=${descriptionLength}`).pipe(
             map(res => res.response)
         )
