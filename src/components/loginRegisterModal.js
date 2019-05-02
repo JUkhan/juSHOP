@@ -19,7 +19,7 @@ export function LoginRegisterModal({ config }) {
     config.visible = visible;
     config.show = show;
     config.hide = hide;
-    console.log(visible)
+
     return (
         <Modal title="Login or Sign up"
             footer={<Button onClick={hide}>Close</Button>}

@@ -26,7 +26,7 @@ export function ProductItem(props) {
                 </div>
                 <div style={{ clear: 'both' }}></div>
 
-                <p style={{ minHeight: 40 }}>{product.description.substring(0, 40) + '......'}</p>
+                <p style={{ minHeight: 50 }}>{product.description.substring(0, 40) + '......'}</p>
 
             </Card >
             <Modal width={800} visible={visible} onCancel={hide} footer={null}>
