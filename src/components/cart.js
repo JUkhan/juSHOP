@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { List, Button, Row, Col, message } from 'antd';
 import { CartItem } from './cartItem';
 import { withRouter } from 'react-router-dom'
-import { useSubscriptions } from '../utils'
+import { useSubscriptions } from 'react-ajwah'
 import { LoginRegisterModal } from './loginRegisterModal'
 
 export function shoppingCart({ history }) {

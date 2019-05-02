@@ -16,6 +16,7 @@ export function ProductDetails(props) {
             props.product.description = res[0].description;
             props.product.image = res[0].image;
             props.product.image2 = res[0].image_2;
+            setSAState({})
         });
         Api.getAttributes(props.product.product_id).pipe(take(1)).subscribe(res => setAttributesState(res))
     }, [])

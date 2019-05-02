@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Rate, Button, message, List } from 'antd'
 import { Api } from '../../services/Api';
-import { useSubscriptions } from '../../utils';
+import { useSubscriptions } from 'react-ajwah';
 import { take } from 'rxjs/operators';
 
 export function Review({ productId }) {

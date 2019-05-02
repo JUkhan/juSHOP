@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, Modal, Tabs } from 'antd'
 import { Login } from './login'
 import { Register } from './register'
-import { useSubscriptions } from '../utils';
+import { useSubscriptions } from 'react-ajwah';
 
 export function LoginRegisterModal({ config }) {
 

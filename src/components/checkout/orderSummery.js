@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Table } from 'antd'
-import { useSubscriptions } from '../../utils';
+import { useSubscriptions } from 'react-ajwah';
 
 export function OrderSummary(props) {
 

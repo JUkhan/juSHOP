@@ -3,7 +3,7 @@ import * as ActionNames from '../../store/actions'
 import { dispatch } from 'ajwah-store'
 import { List, Pagination } from 'antd'
 import { ProductItem } from './productItem'
-import { useSubscriptions } from '../../utils';
+import { useSubscriptions } from 'react-ajwah';
 
 
 

@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react'
-import { useSubscriptions } from '../../utils'
+import { useSubscriptions } from 'react-ajwah'
 import { dispatch } from 'ajwah-store'
 import { GetDepartments, SelectDepartment } from '../../store/actions'
 import { Menu } from 'antd'

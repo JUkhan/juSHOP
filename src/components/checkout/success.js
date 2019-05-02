@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { Button } from 'antd';
 import { dispatch } from 'ajwah-store';
 import * as ActionNames from '../../store/actions'
-import { useSubscriptions } from '../../utils';
+import { useSubscriptions } from 'react-ajwah';
 
 
 function success({ history }) {

@@ -22,7 +22,7 @@ export function persistState() {
     });
 }
 
-export function useSubscriptions(states) {
+export function useSubscriptionsx(states) {
     const [state, dispatch] = useReducer((state, action) => {
         return action.type ? { ...state, [action.type]: action.payload } : state
     }, states.reduce((prev, next) => { prev[next] = storeCtx().store.states[next] ? storeCtx().store.states[next].initialState : {}; return prev; }, {}));

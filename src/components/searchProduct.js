@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import * as ActionNames from '../store/actions'
-import { useSubscriptions } from '../utils'
+import { useSubscriptions } from 'react-ajwah'
 import { Input, Badge, Icon, Button } from 'antd'
 import { Link } from "react-router-dom"
 import { withRouter } from 'react-router-dom'
