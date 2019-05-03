@@ -55,15 +55,16 @@ export function ProductDetails(props) {
                     </div>
 
                     <p>{description}</p>
+                    <b>Color</b>
                     <div className="color-size">
                         <ul >
-                            <li>Color</li>
                             {colors.map(item => <li key={name + item.attribute_value} ><Button className={sa.color === item.attribute_value ? 'circle-border' : ''} onClick={() => setColor(item.attribute_value)} shape="circle" style={{ backgroundColor: item.attribute_value }} /></li>)}
                         </ul>
                     </div>
+                    <div />
+                    <b>Size</b>
                     <div className="color-size">
                         <ul>
-                            <li>Size</li>
                             {sizes.map(item => <li key={name + item.attribute_value} ><Button className={sa.size === item.attribute_value ? 'circle-border' : ''} onClick={() => setSize(item.attribute_value)} shape="round">{item.attribute_value}</Button></li>)}
                         </ul>
                     </div>
