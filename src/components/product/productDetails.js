@@ -11,12 +11,14 @@ import { Review } from './review';
 export function ProductDetails(props) {
     const [sa, setSAState] = useState({})
     const [attributes, setAttributesState] = useState([])
+
     useEffect(() => {
         Api.getProductDetails(props.product.product_id).pipe(take(1)).subscribe(res => {
             props.product.description = res[0].description;
             props.product.image = res[0].image;
             props.product.image2 = res[0].image_2;
             setSAState({})
+
         });
         Api.getAttributes(props.product.product_id).pipe(take(1)).subscribe(res => setAttributesState(res))
     }, [])
@@ -54,15 +56,15 @@ export function ProductDetails(props) {
 
                     <p>{description}</p>
                     <div className="color-size">
-                        <h3>Color {sa.color && <Button disabled={true} shape="circle" style={{ backgroundColor: sa.color }} />}</h3>
                         <ul >
-                            {colors.map(item => <li key={item.attribute_value_id} ><Button onClick={() => setColor(item.attribute_value)} shape="circle" style={{ backgroundColor: item.attribute_value }} /></li>)}
+                            <li>Color</li>
+                            {colors.map(item => <li key={name + item.attribute_value} ><Button className={sa.color === item.attribute_value ? 'circle-border' : ''} onClick={() => setColor(item.attribute_value)} shape="circle" style={{ backgroundColor: item.attribute_value }} /></li>)}
                         </ul>
                     </div>
                     <div className="color-size">
-                        <h3>Size {sa.size && <Button disabled={true} shape="round">{sa.size}</Button>}</h3>
                         <ul>
-                            {sizes.map(item => <li key={item.attribute_value_id} ><Button onClick={() => setSize(item.attribute_value)} shape="round">{item.attribute_value}</Button></li>)}
+                            <li>Size</li>
+                            {sizes.map(item => <li key={name + item.attribute_value} ><Button className={sa.size === item.attribute_value ? 'circle-border' : ''} onClick={() => setSize(item.attribute_value)} shape="round">{item.attribute_value}</Button></li>)}
                         </ul>
                     </div>
                     <div style={{ textAlign: 'center', marginTop: 20 }}>
@@ -76,3 +78,4 @@ export function ProductDetails(props) {
         </React.Fragment>
     )
 }
+

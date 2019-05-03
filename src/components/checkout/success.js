@@ -3,13 +3,10 @@ import { withRouter } from 'react-router-dom'
 import { Button } from 'antd';
 import { dispatch } from 'ajwah-store';
 import * as ActionNames from '../../store/actions'
-import { useSubscriptions } from 'react-ajwah';
-
 
 function success({ history }) {
-    const { cart } = useSubscriptions(['cart'])
+    dispatch(ActionNames.CartCleanup)
     function back() {
-        dispatch(ActionNames.CartCleanup)
         history.push('/')
     }
     return (
@@ -17,8 +14,7 @@ function success({ history }) {
             <h1>Success!</h1>
             <p>Your items will be shipped shortly!</p>
             <p>You will get email details.</p>
-            <h1>OrderId:{cart.orderId} </h1>
-            <p>{JSON.stringify(cart.charge)}</p>
+
             <Button type="danger" shape="round" onClick={back}>Back to Shop</Button>
         </div>
     )

@@ -29,7 +29,7 @@ export function ProductItem(props) {
                 <p style={{ height: 50, fontSize: 11, paddingTop: 5 }}>{product.description.substring(0, 120) + '......'}</p>
 
             </Card >
-            <Modal width={800} visible={visible} onCancel={hide} footer={null}>
+            <Modal key={product.name} width={800} visible={visible} onCancel={hide} footer={null}>
                 <ProductDetails hide={hide} product={product} />
             </Modal>
         </React.Fragment>

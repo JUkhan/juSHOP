@@ -26,7 +26,7 @@ export function Products() {
                 }}
                 dataSource={product.data.rows}
                 renderItem={item => (
-                    <List.Item>
+                    <List.Item key={item.name}>
                         <ProductItem product={item}></ProductItem>
                     </List.Item>
                 )}
