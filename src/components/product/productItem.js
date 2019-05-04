@@ -26,7 +26,7 @@ export function ProductItem(props) {
                 </div>
                 <div style={{ clear: 'both' }}></div>
 
-                <p style={{ height: 50, fontSize: 11, paddingTop: 5 }}>{product.description.substring(0, 120) + '......'}</p>
+                <p style={{ height: 50, fontSize: 11, paddingTop: 5, overflow: 'hidden' }}>{product.description.substring(0, 120) + '......'}</p>
 
             </Card >
             <Modal key={product.name} width={800} visible={visible} onCancel={hide} footer={null}>
