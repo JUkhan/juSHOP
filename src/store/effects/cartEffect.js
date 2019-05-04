@@ -58,7 +58,7 @@ export class CartEffect {
         return action$.pipe(
             withLatestFrom(store$.select(state => [state.cart.stripeToken, state.cart.cartId, state.cart.grandTotal, state.customer.accessToken, state.customer.customer])),
             mergeMap(([action, [stripeToken, cart_id, gtotal, token, { customer_id }]]) => {
-                let _order_id = 0;
+                let _order_id = 0; //console.log(stripeToken, token, cart_id, gtotal, customer_id)
                 return Api.makeOrders({ stripeToken, cart_id, customer_id, shipping_id: 2, tax_id: 2 }, token).pipe(
                     tap(res => console.log('order: ', res)),
                     mergeMap(({ orderId }) => {
@@ -70,13 +70,13 @@ export class CartEffect {
                             amount: Math.round(gtotal)
                         };
                         return Api.makeCharge(data, token).pipe(
-                            tap(res => console.log('Charge:', res)),
+                            //tap(res => console.log('Charge:', res)),
                             map(res => ({ type: ActionNames.OrderId, payload: orderId, charge: res }))
                         )
                     }),
                     //timeout(2500),
                     catchError(data => {
-                        console.log(data.response)
+                        //console.log(data.response)
                         return of({ type: ActionNames.OrderId, payload: _order_id, charge: data.response })
                     })
                 )
