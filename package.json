@@ -17,6 +17,8 @@
     "rxjs": "6.4.0"
   },
   "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "typescript": "3.3.3"
   },
   "scripts": {

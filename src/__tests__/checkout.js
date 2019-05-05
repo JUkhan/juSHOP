@@ -1,6 +1,5 @@
 import * as Actions from '../store/actions'
-//import store from '../../testUtil'
-import { take, withLatestFrom } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 describe('checkout', () => {
     let isFirst = true;

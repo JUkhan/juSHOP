@@ -1,14 +1,21 @@
 import * as Actions from '../store/actions'
 import { take } from 'rxjs/operators';
-//import store from './testUtil'
+import { Api } from '../services/Api'
 
-describe('juSHOP', () => {
+jest.mock('../services/Api')
+describe('Departmeent and category', () => {
+
     let isFirst = true;
     beforeEach(() => {
         isFirst = true;
     })
-
+    test('products', done => {
+        Api.getProducts().subscribe(res => {
+            expect(res.count).toBe(101)
+        }, done, done)
+    })
     test('Load all products(101)', (done) => {
+
         store.dispatch(Actions.LoadProducts, {})
         store.select('product').pipe(
             take(2)
