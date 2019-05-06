@@ -1,16 +1,11 @@
 import * as Actions from '../store/actions'
-import { take } from 'rxjs/operators';
-
+import { take } from 'rxjs/operators'
+import { storeCtx } from 'ajwah-store'
 
 describe('cart', () => {
-    let isFirst = true;
-    beforeEach(() => {
-        isFirst = true;
-    })
-
 
     describe('Adding a product to the cart', () => {
-        store.dispatch(Actions.AddToCart, {
+        storeCtx().dispatch(Actions.AddToCart, {
             product_id: 2,
             name: "Chartres Cathedral",
             price: "16.95",
@@ -19,18 +14,15 @@ describe('cart', () => {
             image: "chartres-cathedral.gif",
             image2: "chartres-cathedral-2.gif",
             color: "Red",
-            size: "M"
+            size: "LG"
         });
 
         test('Very first time it makes a unique cart_id and add products using this cart_id and leave for subsequent times', done => {
-            store.select('cart').pipe(
-                take(2)
+            storeCtx().select('cart').pipe(
+                take(1)
             ).subscribe(cart => {
-                if (!isFirst) {
-                    expect(cart.cartId).toBeTruthy();
-                    expect(cart.data.length).toBe(1);
-                }
-                isFirst = false;
+                expect(cart.cartId).toBeTruthy();
+                expect(cart.data.length).toBe(1);
 
             }, done, done);
         })
