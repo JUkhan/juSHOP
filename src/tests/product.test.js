@@ -2,6 +2,7 @@ import * as Actions from '../store/actions'
 import { take } from 'rxjs/operators';
 import { storeCtx } from 'ajwah-store'
 
+
 describe('Product', () => {
 
     describe('If you select a department like "Regional" then category should be filtered as 3 categories and all the products(16) based on selected department should be loaded', () => {

@@ -11,6 +11,11 @@ import {
     DepartmentState
 } from "./store";
 
+import { configure } from 'enzyme'
+import Adapte from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapte() })
+
 
 setStoreContext({
     states: [
