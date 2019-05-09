@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`categories categories - top menu should generate 7 li 1`] = `
+<aside
+  className="ant-layout-sider ant-layout-sider-dark"
+  style={
+    Object {
+      "flex": "0 0 200px",
+      "height": "100vh",
+      "left": 0,
+      "maxWidth": "200px",
+      "minWidth": "200px",
+      "overflow": "auto",
+      "position": "fixed",
+      "width": "200px",
+    }
+  }
+>
+  <div
+    className="ant-layout-sider-children"
+  >
+    <div
+      className="logo"
+    >
+      juSHOP
+    </div>
+    <div
+      className="categories"
+    >
+      Categories
+    </div>
+    <ul
+      className="ant-menu ant-menu-dark ant-menu-root ant-menu-inline"
+      onMouseEnter={[Function]}
+      onTransitionEnd={[Function]}
+      role="menu"
+      style={Object {}}
+    >
+      <li
+        className="ant-menu-item"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "paddingLeft": 24,
+          }
+        }
+      >
+        <span
+          className="nav-text"
+        >
+          French
+        </span>
+      </li>
+      <li
+        className="ant-menu-item"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "paddingLeft": 24,
+          }
+        }
+      >
+        <span
+          className="nav-text"
+        >
+          Italian
+        </span>
+      </li>
+      <li
+        className="ant-menu-item"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "paddingLeft": 24,
+          }
+        }
+      >
+        <span
+          className="nav-text"
+        >
+          Irish
+        </span>
+      </li>
+      <li
+        className="ant-menu-item"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "paddingLeft": 24,
+          }
+        }
+      >
+        <span
+          className="nav-text"
+        >
+          Animal
+        </span>
+      </li>
+      <li
+        className="ant-menu-item"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "paddingLeft": 24,
+          }
+        }
+      >
+        <span
+          className="nav-text"
+        >
+          Flower
+        </span>
+      </li>
+      <li
+        className="ant-menu-item"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "paddingLeft": 24,
+          }
+        }
+      >
+        <span
+          className="nav-text"
+        >
+          Christmas
+        </span>
+      </li>
+      <li
+        className="ant-menu-item"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        role="menuitem"
+        style={
+          Object {
+            "paddingLeft": 24,
+          }
+        }
+      >
+        <span
+          className="nav-text"
+        >
+          Valentine's
+        </span>
+      </li>
+    </ul>
+  </div>
+</aside>
+`;
