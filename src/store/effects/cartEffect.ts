@@ -3,13 +3,14 @@ import { Api } from '../../services/Api'
 import * as ActionNames from '../actions'
 import { EMPTY, of } from 'rxjs';
 import { Actions, StoreContext } from 'ajwah-store';
+import { ICartState, AppState } from '../model';
 
 
 export class CartEffect {
 
     effectForAddToCart(action$: Actions, store$: StoreContext) {
         return action$.pipe(
-            withLatestFrom(store$.select('cart')),
+            withLatestFrom(store$.select<ICartState>('cart')),
             mergeMap(([action, cart]) => {
                 if (cart.cartId) {
                     return Api.addToCart({ cart_id: cart.cartId, product_id: action.payload.product_id, attributes: `${action.payload.color} ${action.payload.size}` }).pipe(
@@ -55,7 +56,7 @@ export class CartEffect {
         )
     }
 
-    effectForMakeOrders(action$: Actions, store$: StoreContext) {
+    effectForMakeOrders(action$: Actions, store$: StoreContext<AppState>) {
         return action$.pipe(
             withLatestFrom(store$.select(state => [state.cart.stripeToken, state.cart.cartId, state.cart.grandTotal, state.customer.accessToken, state.customer.customer])),
             mergeMap(([action, [stripeToken, cart_id, gtotal, token, { customer_id }]]) => {

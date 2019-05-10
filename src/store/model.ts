@@ -8,6 +8,7 @@ export interface ICart {
     quantity: number;
     thumbnail: string;
     total: number;
+
 }
 export interface ICategory {
     category_id: number;
@@ -25,6 +26,7 @@ export interface ICartState {
     stripeToken?: string;
     charge?: any;
     cartId?: string;
+    grandTotal: number;
 }
 
 export interface ICustomerState {
@@ -55,11 +57,18 @@ export interface IProductState {
     pageNo: number;
     limit: number;
 }
+export interface IDeliveryState {
+    firstName: string,
+    lastName: string,
+    address: string, city: string, state: string, zipCode: string, isBiAsDelivery: boolean,
+    deliveryOption: number
+}
 
 export interface AppState {
-    cart: ICartState;
-    category: ICategoryState;
-    product: IProductState;
-    department: IDepartmentState;
-    customer: ICustomerState
+    cart: ICartState,
+    category: ICategoryState,
+    product: IProductState,
+    department: IDepartmentState,
+    customer: ICustomerState,
+    delivery: IDeliveryState
 }

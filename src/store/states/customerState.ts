@@ -3,7 +3,7 @@ import { mergeMap, map, catchError, withLatestFrom, tap } from 'rxjs/operators';
 import { Api } from '../../services/Api';
 import * as ActionNames from '../actions';
 import { of, EMPTY } from 'rxjs';
-import { ICustomerState } from '../model';
+import { ICustomerState, AppState, IDeliveryState } from '../model';
 import { Actions, StoreContext, IAction } from 'ajwah-store';
 
 export class CustomerState {
@@ -39,7 +39,7 @@ export class CustomerState {
         );
     }
 
-    effectForUpdateCustomer(action$: Actions, store$: StoreContext) {
+    effectForUpdateCustomer(action$: Actions, store$: StoreContext<AppState>) {
         return action$.pipe(
             withLatestFrom(store$.select(state => [state.customer.accessToken, state.delivery])),
             mergeMap(([action, [token, delivery]]) => {

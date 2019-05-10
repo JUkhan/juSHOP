@@ -1,6 +1,5 @@
 import * as Actions from '../store/actions'
 import { take } from 'rxjs/operators';
-import { Api } from '../services/Api'
 import { storeCtx } from 'ajwah-store'
 
 describe('Departmeent and category', () => {

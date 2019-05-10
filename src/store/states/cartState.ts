@@ -5,7 +5,7 @@ import { IAction } from 'ajwah-store';
 
 export class CartState {
     name = 'cart';
-    initialState: ICartState = { message: '', data: [], total: 0 };
+    initialState: ICartState = { message: '', data: [], total: 0, grandTotal: 0 };
 
     actionCartAddData(state: ICartState, { payload, thumbnail }: IAction<ICart[]>): ICartState {
 
@@ -30,11 +30,11 @@ export class CartState {
     actionRemoveItem(state: ICartState, { payload }: any): ICartState {
         const data = state.data.filter(item => item !== payload);
         const total = data.reduce((sum, item) => sum + item.quantity, 0);
-        return updateObject(state, { data, total });
+        return updateObject(state, { data, total } as ICartState);
     }
 
     actionAllCartItems(state: ICartState, { payload }: any): ICartState {
-        return updateObject(state, { data: payload })
+        return updateObject(state, { data: payload } as ICartState)
     }
 
     actionCartCleanup(): ICartState {
